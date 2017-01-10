@@ -1,9 +1,9 @@
 solve();
 
 function solve() {
-    exp = "4+8*6-5/3-2*2+2";
+    exp = "43+84*65-5/3-2*2+2";
     var post_exp = evaluate(exp);
-    print(exp);
+    //print(exp);
     print(post_exp);
     var a, ans_stack = [];
     for (i = 0; i < post_exp.length; i++) {
@@ -45,13 +45,20 @@ function evaluate(exp) {
     print(exp);
     var stack = [];
     var ans = [];
-    for (i = 0; i < exp.length; ++i) {
+    for (i = 0; i < exp.length;) {
         //   print(stack);
-        if (isOperand(exp[i]))
-            ans[++k] = exp[i];
-        else if (exp[i] == '(')
-            stack.push(exp[i]);
+        if (isOperand(exp[i])) {
+            var x = '';
+            while (isOperand(exp[i])) {
+                x += exp[i];
+                i++;
+            }
+            print(x);
+            ans[++k] = x;
+        } else if (exp[i] == '(')
+            stack.push(exp[i++]);
         else if (exp[i] == ')') {
+            i++;
             while (!isEmpty(stack) && peek(stack) != '(')
                 ans[++k] = stack.pop();
             if (!isEmpty(stack) && peek(stack) != '(')
@@ -61,7 +68,7 @@ function evaluate(exp) {
         } else { //operator encountered
             while (!isEmpty(stack) && Prec(exp[i]) <= Prec(peek(stack)))
                 ans[++k] = stack.pop();
-            stack.push(exp[i]);
+            stack.push(exp[i++]);
         }
 
     }
