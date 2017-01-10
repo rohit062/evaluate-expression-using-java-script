@@ -1,7 +1,7 @@
 solve();
 
 function solve() {
-    exp = "43+84*65-5/3-2*2+2";
+    exp = "5-10+55";
     var post_exp = evaluate(exp);
     //print(exp);
     print(post_exp);
@@ -37,7 +37,6 @@ function solve() {
     print(eval(exp));
 
 }
-
 
 function evaluate(exp) {
     var i, k = -1;
