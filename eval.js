@@ -28,7 +28,7 @@ function solve() {
                 ans_stack.push(parseFloat(second) - parseFloat(first));
             else
             if (post_exp[i] == '^')
-                ans_stack.push(parseFloat(first) ^ parseFloat(second));
+                ans_stack.push(Math.pow(parseFloat(first), parseFloat(second)));
             print(peek(ans_stack));
         }
 
